@@ -459,6 +459,9 @@ IInput (
     IN UINTN                            StrLen
     );
 
+VOID
+Pause(VOID);
+
 UINTN
 Print (
     IN CONST CHAR16   *fmt,
@@ -990,7 +993,6 @@ extern EFI_DEVICE_IO_INTERFACE  *GlobalIoFncs;
 #define writepci32(_Addr, _DataByte) (UINT32)WritePciConfig(GlobalIoFncs, IO_UINT32, (UINTN)_Addr, (UINTN)_DataByte)
 #define readpci32(_Addr)             (UINT32)ReadPciConfig(GlobalIoFncs,  IO_UINT32, (UINTN)_Addr)
 
-#define Pause()             WaitForSingleEvent (ST->ConIn->WaitForKey, 0)
 #define Port80(_PostCode)   GlobalIoFncs->Io.Write (GlobalIoFncs, IO_UINT16, (UINT64)0x80, 1, &(_PostCode))
 
 #endif

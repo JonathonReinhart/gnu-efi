@@ -102,3 +102,13 @@ IInput (
 
     InStr[Len] = 0;
 }
+
+VOID Pause(VOID)
+// Wait for (and consume) a keypress
+{
+    SIMPLE_INPUT_INTERFACE *ConIn = ST->ConIn;
+    EFI_INPUT_KEY Key;
+
+    WaitForSingleEvent(ConIn->WaitForKey, 0);
+    uefi_call_wrapper(ConIn->ReadKeyStroke, 2, ConIn, &Key);
+}
